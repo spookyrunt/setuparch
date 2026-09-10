@@ -17,6 +17,7 @@ rm -rf /tmp/yay
 
 ./setup-nvim.sh
 ./setup-go.sh
+./setup-snapper.sh
 
 # setup lemonade
 go install github.com/lemonade-command/lemonade@latest
