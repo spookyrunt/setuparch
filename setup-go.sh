@@ -1,7 +1,14 @@
 #!/bin/bash
 set -euo pipefail
 
-GO_VERSION="$(curl -fsSL 'https://go.dev/dl/?mode=json' | jq -r '.[0].version')"
+GO_VERSION="$(curl -fsSL 'https://go.dev/dl/?mode=json' | jq -er '.[0].version')"
+CURRENT_VERSION="$(go version 2>/dev/null | awk '{print $3}' || true)"
+
+if [[ "$CURRENT_VERSION" == "$GO_VERSION" ]]; then
+  echo "Go is already installed and up to date ($CURRENT_VERSION). Skipping."
+  exit 0
+fi
+
 GO_FILE="${GO_VERSION}.linux-amd64.tar.gz"
 curl -fLO "https://go.dev/dl/${GO_FILE}"
 sudo rm -rf /usr/local/go
