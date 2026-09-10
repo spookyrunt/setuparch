@@ -7,8 +7,19 @@ sudo pacman -Syu --needed base-devel \
   python python-pip nodejs npm rustup \
   etckeeper
 
+# setup yay
+git clone https://aur.archlinux.org/yay.git /tmp/yay
+(
+  cd /tmp/yay
+  makepkg -si
+)
+rm -rf /tmp/yay
+
 ./setup-nvim.sh
 ./setup-go.sh
+
+# setup lemonade
+go install github.com/lemonade-command/lemonade@latest
 
 # setup etckeeper
 sudo etckeeper init
