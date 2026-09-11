@@ -2,17 +2,22 @@
 set -euo pipefail
 
 # set noatime,compress=zstd in /etc/fstab
-sudo cp /etc/fstab "/etc/fstab.bak.$(date +%Y%m%d%H%M%S)"
-awk 'BEGIN { OFS = "\t" }
-     $3 == "btrfs" && !/^#/ {
-         gsub(/(^|,)noatime/, "", $4)
-         gsub(/(^|,)compress(-force)?=[^,]*/, "", $4)
-         gsub(/,,+/, ",", $4)
-         sub(/^,/, "", $4)
-         $4 = $4 ",noatime,compress=zstd"
-     }
-     1' /etc/fstab |
-sudo tee /tmp/fstab >/dev/null
+sudo cp /etc/fstab "/etc/fstab.bak.$(date +%Y%m%d%H%M%S)" &&
+awk 'BEGIN { OFS="\t" }
+$3 == "btrfs" && !/^#/ {
+    split($4, opts, ",")
+    new = ""
+
+    for (i = 1; i <= length(opts); i++)
+        if (opts[i] != "" &&
+            opts[i] != "noatime" &&
+            opts[i] !~ /^compress(-force)?=/)
+            new = new (new ? "," : "") opts[i]
+
+    $4 = (new ? new "," : "") "noatime,compress=zstd"
+}
+{ print }' /etc/fstab |
+sudo tee /tmp/fstab >/dev/null &&
 sudo mv /tmp/fstab /etc/fstab
 
 # snapper for timeline, boot, snap-pac
