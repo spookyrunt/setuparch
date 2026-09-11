@@ -54,4 +54,4 @@ sudo systemctl enable --now snapper-cleanup.timer
 sudo snapper -c root create -d "Initial automated setup"
 sudo snapper -c home create -d "Initial automated setup"
 echo ""
-echo "Done. You may use btrfs-assistant --list and --restore instead of snapper rollback."
+echo "Done. You may use sudo btrfs-assistant --list and --restore instead of snapper rollback."
