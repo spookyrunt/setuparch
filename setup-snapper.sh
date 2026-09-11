@@ -26,7 +26,7 @@ sudo snapper -c home set-config \
   NUMBER_LIMIT_IMPORTANT="4"
 sudo snapper -v -c root cleanup all
 sudo snapper -v -c home cleanup all
-sudo systemctl enable snapper-boot.service
+sudo systemctl enable snapper-boot.timer
 sudo systemctl enable --now snapper-timeline.timer
 sudo systemctl enable --now snapper-cleanup.timer
 sudo snapper -c root create -d "Initial automated setup"
