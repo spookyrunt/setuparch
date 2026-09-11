@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-pacman -S --needed --noconfirm snapper btrfs-assistant
+sudo pacman -S --needed --noconfirm snapper btrfs-assistant
 
 # set noatime,compress=zstd in /etc/fstab
 sudo cp /etc/fstab "/etc/fstab.bak.$(date +%Y%m%d%H%M%S)" &&
