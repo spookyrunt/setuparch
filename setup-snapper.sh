@@ -1,9 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
+pacman -S --needed --noconfirm snapper btrfs-assistant
+
 # set noatime,compress=zstd in /etc/fstab
 sudo cp /etc/fstab "/etc/fstab.bak.$(date +%Y%m%d%H%M%S)" &&
-awk 'BEGIN { OFS="\t" }
+  awk 'BEGIN { OFS="\t" }
 $3 == "btrfs" && $0 !~ /^[[:space:]]*#/ {
     count = split($4, opts, ",")
     new = ""
@@ -17,7 +19,7 @@ $3 == "btrfs" && $0 !~ /^[[:space:]]*#/ {
     $4 = (new ? new "," : "") "noatime,compress=zstd"
 }
 { print }' /etc/fstab |
-sudo tee /tmp/fstab >/dev/null
+  sudo tee /tmp/fstab >/dev/null
 sudo mv /tmp/fstab /etc/fstab
 
 # snapper for timeline, boot, snap-pac
@@ -52,4 +54,4 @@ sudo systemctl enable --now snapper-cleanup.timer
 sudo snapper -c root create -d "Initial automated setup"
 sudo snapper -c home create -d "Initial automated setup"
 echo ""
-echo "Done. You may use btrfs-assistant or snapper-rollback for rollback instead of snapper rollback."
+echo "Done. You may use btrfs-assistant --list and --restore instead of snapper rollback."

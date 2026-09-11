@@ -1,11 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
-sudo pacman -Syu --needed base-devel \
+sudo pacman -Syu --needed --noconfirm base-devel \
   less unzip curl \
   git jq ripgrep fd fzf trash-cli \
   python python-pip nodejs npm rustup \
-  etckeeper
+  etckeeper btrfs-assistant
 
 # setup yay
 git clone https://aur.archlinux.org/yay.git /tmp/yay
