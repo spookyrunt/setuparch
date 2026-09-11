@@ -51,7 +51,9 @@ sudo snapper -v -c home cleanup all
 sudo systemctl enable snapper-boot.timer
 sudo systemctl enable --now snapper-timeline.timer
 sudo systemctl enable --now snapper-cleanup.timer
-sudo snapper -c root create -d "Initial automated setup"
-sudo snapper -c home create -d "Initial automated setup"
+sudo snapper -c root create -d "automated setup" -c number
+sudo snapper -c home create -d "automated setup" -c number
 echo ""
-echo "Done. You may use sudo btrfs-assistant --list and --restore instead of snapper rollback."
+echo "Done."
+echo "You may use sudo btrfs-assistant --list and --restore instead of snapper rollback."
+echo "Please note that btrfs-assistant --restore leaves @_backup... subvolumes under ID5 so you have to manually delete them later."
