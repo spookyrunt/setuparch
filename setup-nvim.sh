@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-sudo pacman -S --needed curl jq git
+sudo pacman -S --needed --noconfirm curl jq git
 
 RELEASE_JSON="$(curl -fsSL https://api.github.com/repos/neovim/neovim/releases/latest)"
 NVIM_LATEST_TAG="$(jq -er '.tag_name' <<<"$RELEASE_JSON")"
