@@ -5,7 +5,8 @@ sudo pacman -Syu --needed --noconfirm base-devel \
   less unzip curl \
   git jq ripgrep fd fzf trash-cli \
   python python-pip nodejs npm rustup \
-  etckeeper btrfs-assistant
+  etckeeper btrfs-assistant \
+  tree rsync
 
 # setup yay
 git clone https://aur.archlinux.org/yay.git /tmp/yay
