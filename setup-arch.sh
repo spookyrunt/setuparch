@@ -8,8 +8,11 @@ sudo pacman -Syu --needed --noconfirm base-devel \
   etckeeper btrfs-assistant \
   tree rsync
 
+# setup rustup
+rustup default stable
+
 # setup ll
-grep -qxF "alias ll='ls -alF'" ~/.bashrc || echo "alias ll='ls -alF'" >> ~/.bashrc
+grep -qxF "alias ll='ls -alF'" ~/.bashrc || echo "alias ll='ls -alF'" >>~/.bashrc
 
 # setup yay
 git clone https://aur.archlinux.org/yay.git /tmp/yay
