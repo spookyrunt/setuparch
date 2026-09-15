@@ -25,6 +25,7 @@ rm -rf /tmp/yay
 ./setup-nvim.sh
 ./setup-go.sh
 ./setup-snapper.sh
+./setup-ufw.sh
 
 # setup lemonade
 go install github.com/lemonade-command/lemonade@latest
@@ -33,6 +34,11 @@ go install github.com/lemonade-command/lemonade@latest
 sudo etckeeper init
 sudo sed -i 's/^#* *AVOID_DAILY_AUTOCOMMITS=.*/AVOID_DAILY_AUTOCOMMITS=1/' /etc/etckeeper/etckeeper.conf
 sudo systemctl mask --now etckeeper.timer
+
+# disable faillock
+grep -q '^deny =' /etc/security/faillock.conf &&
+  sudo sed -i 's/^deny =.*/deny = 0/' /etc/security/faillock.conf ||
+  echo "deny = 0" | sudo tee -a /etc/security/faillock.conf
 
 echo ""
 echo "Finished. Please reboot."
