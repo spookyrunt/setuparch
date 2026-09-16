@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+sudo pacman -S --needed --noconfirm ufw
+
 sudo chattr -i /etc/ufw/user.rules
 sudo chattr -i /etc/ufw/user6.rules
 
