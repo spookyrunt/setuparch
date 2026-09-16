@@ -18,7 +18,7 @@ grep -qxF "alias ll='ls -alF'" ~/.bashrc || echo "alias ll='ls -alF'" >>~/.bashr
 git clone https://aur.archlinux.org/yay.git /tmp/yay
 (
   cd /tmp/yay
-  makepkg -si
+  makepkg -si --noconfirm
 )
 rm -rf /tmp/yay
 
