@@ -98,7 +98,6 @@ return {
 EOF
 
 cat >>~/.config/nvim/lua/config/options.lua <<'EOF'
-
 -- Lemonade Clipboard Provider Configuration
 if vim.fn.executable("lemonade") == 1 then
 vim.g.clipboard = {
