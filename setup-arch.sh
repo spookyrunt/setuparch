@@ -6,7 +6,7 @@ sudo pacman -Syu --needed --noconfirm base-devel \
   git jq ripgrep fd fzf trash-cli \
   python python-pip nodejs npm rustup \
   etckeeper btrfs-assistant \
-  tree rsync
+  tree rsync btop nvtop
 
 # setup rustup
 rustup default stable
