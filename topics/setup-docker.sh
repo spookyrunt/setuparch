@@ -9,3 +9,6 @@ sudo usermod -aG docker $USER
 sudo systemctl disable --now docker.socket
 sudo systemctl disable --now docker.service
 sudo systemctl start docker
+
+echo ""
+echo "Finished installing docker."
