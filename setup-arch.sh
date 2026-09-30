@@ -2,7 +2,7 @@
 set -euo pipefail
 
 sudo pacman -Syu --needed --noconfirm base-devel \
-  less unzip curl \
+  less unzip curl wget \
   git jq ripgrep fd fzf trash-cli \
   python python-pip nodejs npm rustup \
   etckeeper btrfs-assistant \
